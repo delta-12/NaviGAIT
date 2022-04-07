@@ -1,0 +1,20 @@
+{
+  "name": "web_app_backend",
+  "version": "1.0.0",
+  "description": "Provides API endpoint for web app front end primarily for getting info from database",
+  "main": "server.js",
+  "engines" : {
+    "node": "17.3.0",
+    "npm": "8.3.0"
+  },
+  "scripts": {
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run server\" \"npm run start-frontend --prefix ../\""
+  },
+  "author": "delta12",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.15"
+  }
+}
