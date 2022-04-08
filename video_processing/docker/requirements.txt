@@ -1,2 +1,0 @@
-argparse
-opencv-contrib-python

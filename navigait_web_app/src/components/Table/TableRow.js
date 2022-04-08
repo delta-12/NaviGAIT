@@ -3,7 +3,6 @@ import { Component } from "react"
 export default class TableRow extends Component {
 
     render() {
-        // const {errors} = this.state
         const date = new Date(this.props.date).toLocaleString().replace(":00 ", " ")
         return (
             <tr className="table-default">

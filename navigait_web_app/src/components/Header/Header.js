@@ -29,7 +29,7 @@ export default class Header extends Component {
                         <ul className="navbar-nav me-auto">
                             <HeaderItem name="Dashboard" active={this.props.activeItem} to="/dashboard" />
                             <HeaderItem name="Upload" active={this.props.activeItem} to="/upload" />
-                            {/* <HeaderItem name="Download" active={this.props.activeItem} to="/download" /> */}
+                            <HeaderItem name="Patients" active={this.props.activeItem} to="/patients" />
                         </ul>
                     </div>
 
