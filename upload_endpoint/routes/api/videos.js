@@ -3,6 +3,7 @@ const router = express.Router()
 const multer = require("multer")
 const fs = require("fs")
 const axios = require("axios")
+const webApp = process.env.WEBAPP
 
 const validateVideoUploads = require("../../validation/videos")
 
@@ -64,7 +65,7 @@ router.post("/upload", (req, res) => {
     request.title = req.body.title
     request.description = req.body.description
     request.patient = req.body.patient
-    axios.post("http://localhost:5000/api/videos/addVideo", request)
+    axios.post(webApp+"/api/videos/addVideo", request)
       .then(backendRes => {
         if (backendRes.data.success)
         {
@@ -84,7 +85,7 @@ router.post("/delete", multer().none(), (req, res) => {
   const data = {
     videoID: req.body.videoID
   }
-  axios.post("http://localhost:5000/api/videos/deleteVideo", data)
+  axios.post(webApp+"/api/videos/deleteVideo", data)
     .then(() => {
       if (req.body.processed === "true") {
         fs.unlink(processedVideosDir + req.body.fullTitle, err => {

@@ -13,7 +13,7 @@ module.exports = function validateVideoUploads(req) {
       errors.title = "Title is required"
     }
     if (req.files.length === 0) {
-      errors.files = "Selected a video file"
+      errors.files = "Select a video file"
     }
     else {
       for(let i = 0; i < req.files.length; i++) {

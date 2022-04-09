@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  upload_endpoint:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - WEBAPP=http://localhost:5000
