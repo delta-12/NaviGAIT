@@ -8,6 +8,8 @@ services:
       - "5001:5001"
     environment:
       - WEBAPP="https://navigait-web-app.herokuapp.com"
+    volumes:
+      - ./app/videos:/app/videos
   nginx:
     build:
       dockerfile: Dockerfile

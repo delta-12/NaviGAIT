@@ -3,13 +3,7 @@ const app = express()
 const videos = require("./routes/api/videos")
 var cors = require("cors")
 
-const corsOptions ={
-    origin: "https://navigait-web-app.herokuapp.com", 
-    credentials: true,            //access-control-allow-credentials:true
-    optionSuccessStatus: 200
-}
-
-app.use(cors(corsOptions))
+app.use("*", cors())
 
 app.use("/api/videos", videos)
 
