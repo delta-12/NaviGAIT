@@ -6,4 +6,4 @@ services:
     ports:
       - "5001:5001"
     environment:
-      - WEBAPP=http://localhost:5000
+      - WEBAPP="http://localhost:5000"

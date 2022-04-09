@@ -4,6 +4,8 @@ RUN mkdir /navigait
 RUN mv NaviGAIT/upload_endpoint /navigait
 RUN rm -Rf NaviGAIT
 WORKDIR /navigait/upload_endpoint
+RUN mkdir -p videos/uploaded
+RUN mkdir videos/processed
 RUN npm install .
 RUN npm install pm2 -g
 RUN echo "pm2 start server.js" >> run_pm2
