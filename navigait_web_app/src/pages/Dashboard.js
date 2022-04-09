@@ -1,8 +1,37 @@
 import { Component } from "react"
 import Header from "../components/Header/Header"
 import Table from "../components/Table/Table"
+import axios from "axios"
 
 export default class Dashboard extends Component {
+
+  state = {
+    videos: null
+  }
+
+  componentDidMount() {
+    this.getVideos()
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.intervalID)
+  }
+
+  getVideos() {
+    axios
+      .get("/api/videos/infoAll")
+      .then(res => {
+        this.setState({
+          videos: res.data.videos
+        })
+      })
+      .catch(err =>
+        this.setState({
+          errors: err.response.data.error
+        })
+      )
+    this.intervalID = setTimeout(this.getVideos.bind(this), 5000)
+  }
 
   render () {
     return (
@@ -13,7 +42,7 @@ export default class Dashboard extends Component {
                 <h3>Videos</h3>
             </div>
             <main className="px-4">
-                <Table />
+                <Table videos={this.state.videos} />
             </main>
         </div>
       </div>

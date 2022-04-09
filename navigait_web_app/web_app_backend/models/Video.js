@@ -2,7 +2,13 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const VideoSchema =  new Schema({
-    title : {
+    title: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
+    fullTitle: {
         type: String,
         required: true,
         unique: true,

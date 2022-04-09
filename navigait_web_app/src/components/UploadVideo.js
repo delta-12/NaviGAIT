@@ -38,16 +38,17 @@ export default class UploadFile extends Component {
 
     onClick = e => {
         e.preventDefault()
-        const data = new FormData()
-        data.append("file", this.state.selectedVideo)
-        data.append("title", this.state.title)
-        data.append("description", this.state.description)
         this.setState({
             loaded: 0,
             showProgressBar: true,
             data: {},
             errors: {}
         })
+        let data = new FormData()
+        data.append("title", this.state.title)
+        data.append("file", this.state.selectedVideo)
+        data.append("description", this.state.description)
+        data.append("patient", this.state.patient)
         axios.post("http://localhost:5001/api/videos/upload", data, {
             onUploadProgress: ProgressEvent => {
                 this.setState({
@@ -60,12 +61,12 @@ export default class UploadFile extends Component {
                     data: res.data
                 })
             })
-            .catch(err => 
+            .catch(err => {
                 this.setState({
                     showProgressBar: false,
                     errors: err.response.data.errors
                 })
-            )
+            })
     }
 
     render() {

@@ -10,7 +10,6 @@ const uploadedVideosDir = "videos/uploaded/"
 const processedVideosDir = "videos/processed/"
 
 let currentUploads = []
-
 let request = {}
 
 const storage = multer.diskStorage({
@@ -38,6 +37,8 @@ removeVideos = () => {
 }
 
 router.post("/upload", (req, res) => {
+  currentUploads = []
+  request = {}
   upload(req, res, err => {
     const { errors, isValid } = validateVideoUploads(req)
     if (!isValid) {
@@ -51,6 +52,7 @@ router.post("/upload", (req, res) => {
     }
     for (let i = currentUploads.length - 1; i >= 0; i--) {
       let updatedName = request.dateUploaded+"-"+req.body.title+"."+currentUploads[i].split('.').pop()
+      request.fullTitle = updatedName
       fs.rename(uploadedVideosDir+currentUploads[i], uploadedVideosDir+updatedName, err => {
         if (err) {
           removeVideos()
@@ -61,27 +63,47 @@ router.post("/upload", (req, res) => {
     }
     request.title = req.body.title
     request.description = req.body.description
-    // axios.post("http://localhost:5000/api/videos/addVideo", request)
-    //   .then(res => {
-    //     console.log(res.data)
-    //     if (!res.data.success)
-    //     {
-    //       console.log(res.data)
-    //       removeVideos()
-    //       // return res.status(500).json({ success: false })
-    //     }
-    //     currentUploads = []
-    //     request = {}
-    //     // return res.status(200).json({ success: true })
-    //   })
-    //   .catch(err => {
-    //     removeVideos()
-    //     // return res.status(500).json({ success: false, error: err })
-    //   })
-    request = {}
-    currentUploads = []
-    return res.status(200).json({ success: true })
+    request.patient = req.body.patient
+    axios.post("http://localhost:5000/api/videos/addVideo", request)
+      .then(backendRes => {
+        if (backendRes.data.success)
+        {
+          return res.status(200).json({ success: true })
+        }
+        removeVideos()
+        return res.status(500).json({ success: false })
+      })
+      .catch(err => {
+        removeVideos()
+        return res.status(400).json({ errors: err.response.data })
+      })
   })
+})
+
+router.post("/delete", multer().none(), (req, res) => {
+  const data = {
+    videoID: req.body.videoID
+  }
+  axios.post("http://localhost:5000/api/videos/deleteVideo", data)
+    .then(() => {
+      if (req.body.processed === "true") {
+        fs.unlink(processedVideosDir + req.body.fullTitle, err => {
+          if (err) {
+            return res.status(500).json(err)
+          }
+          return res.status(200).json({ success: true })
+        })
+      }
+      fs.unlink(uploadedVideosDir + req.body.fullTitle, err => {
+        if (err) {
+          return res.status(500).json(err)
+        }
+        return res.status(200).json({ success: true })
+      })
+    })
+    .catch(err => {
+      return res.status(400).json({ errors: err.response.data })
+    })
 })
 
 module.exports = router
