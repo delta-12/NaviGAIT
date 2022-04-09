@@ -9,7 +9,7 @@ export default class TableRow extends Component {
         data.append("videoID", this.props.id)
         data.append("fullTitle", this.props.fullTitle)
         data.append("processed", this.props.processed)
-        axios.post("http://localhost:5001/api/videos/delete", data)
+        axios.post("http://18.221.140.54:5001/api/videos/delete", data)
             .then(res => {
                 console.log(res)
             })

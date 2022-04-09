@@ -49,7 +49,7 @@ export default class UploadFile extends Component {
         data.append("file", this.state.selectedVideo)
         data.append("description", this.state.description)
         data.append("patient", this.state.patient)
-        axios.post("http://localhost:5001/api/videos/upload", data, {
+        axios.post("http://18.221.140.54:5001/api/videos/upload", data, {
             onUploadProgress: ProgressEvent => {
                 this.setState({
                     loaded: (ProgressEvent.loaded / ProgressEvent.total*100)
