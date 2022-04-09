@@ -24,7 +24,7 @@
   "scripts": {
     "start-frontend": "react-scripts start",
     "build": "react-scripts build && (cd web_app_backend && npm install)",
-    "start": "cd backend && npm start",
+    "start": "cd web_app_backend && npm start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
