@@ -3,7 +3,19 @@ services:
   upload_endpoint:
     build:
       dockerfile: Dockerfile
+      context: ./app
     ports:
       - "5001:5001"
     environment:
-      - WEBAPP="http://localhost:5000"
+      - WEBAPP="https://navigait-web-app.herokuapp.com"
+  nginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/certbot/conf:/etc/letsencrypt
+    depends_on:
+      - app

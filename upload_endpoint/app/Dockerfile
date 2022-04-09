@@ -1,9 +1,9 @@
 FROM node:latest
 RUN git clone https://github.com/delta-12/NaviGAIT.git
 RUN mkdir /navigait
-RUN mv NaviGAIT/upload_endpoint /navigait
+RUN mv NaviGAIT/upload_endpoint/app /navigait
 RUN rm -Rf NaviGAIT
-WORKDIR /navigait/upload_endpoint
+WORKDIR /navigait/app
 RUN mkdir -p videos/uploaded
 RUN mkdir videos/processed
 RUN npm install .
