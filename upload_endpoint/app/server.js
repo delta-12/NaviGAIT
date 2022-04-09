@@ -3,7 +3,7 @@ const app = express()
 const videos = require("./routes/api/videos")
 var cors = require("cors")
 
-app.use("*", cors())
+app.use(cors())
 
 app.use("/api/videos", videos)
 
