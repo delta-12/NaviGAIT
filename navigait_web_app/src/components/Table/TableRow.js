@@ -44,7 +44,7 @@ export default class TableRow extends Component {
                 <td>{this.props.patient}</td>
                 <td>{this.props.description}</td>
                 {/* <td><button className="btn" style={{border: "none", color: "#2780e3"}}>Edit</button></td> */}
-                <td><button className="btn" style={{border: "none", color: "#2780e3"}}>Download</button></td>
+                <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.onDownloadClick}>Download</button></td>
                 <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.onDeleteClick}>Delete</button></td>
             </tr>
         )
