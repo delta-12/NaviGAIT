@@ -1,5 +1,14 @@
 version: "3.9"
 services:
+  video_processing:
+    build:
+      dockerfile: Dockerfile
+      context: ./video_processing
+    ports:
+      - "10801:10801"
+    volumes:
+      - ./app/videos/processed:/video_processing/videos/processed
+      - ./app/videos/uploaded:/video_processing/videos/uploaded
   app:
     build:
       dockerfile: Dockerfile
@@ -14,3 +23,5 @@ services:
       - ./app/videos/processed:/app/videos/processed
       - ./app/videos/uploaded:/app/videos/uploaded
       - ./app/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - video_processing
