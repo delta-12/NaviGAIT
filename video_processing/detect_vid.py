@@ -51,7 +51,7 @@ arucoDict = cv2.aruco.Dictionary_get(ARUCO_DICT[args["type"]])
 arucoParams = cv2.aruco.DetectorParameters_create()
 
 
-def calculate_angle(image, knee, ankle, color):
+def calculate_lat_angle(image, knee, ankle, color):
     # vertical from height of knee to height of ankle
     cv2.line(image, knee, (knee[0],
                            ankle[1]), color, 2)
@@ -65,6 +65,21 @@ def calculate_angle(image, knee, ankle, color):
         float(max_x - min_x) / float(max_y - min_y)) * (180 / math.pi)
     cv2.putText(image, str(int(angle)) + " deg",
                 (knee[0] + 15, ankle[1]), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
+    return angle
+
+
+def calculate_post_angle(image, left, right, color):
+    max_x = max(left[0], right[0])
+    min_x = min(left[0], right[0])
+    max_y = max(left[1], right[1])
+    min_y = min(left[1], right[1])
+    cv2.line(image, (left[0], max_y), (right[0], max_y),
+             color, 2)  # horizontal line
+    cv2.line(image, left, right, color, 2)  # hip to hip
+    angle = math.atan(
+        float(max_y - min_y) / float(max_x - min_x)) * (180 / math.pi)
+    cv2.putText(image, str(int(angle)) + " deg",
+                (right[0] + 15, max_y), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
     return angle
 
 
@@ -118,12 +133,16 @@ while True:
             #print("[INFO] ArUco marker IDs detected: {}".format(detected))
             #print("Centers: {}".format(centers))
             if 2 in centers and 0 in centers:
-                angle_lat_left = calculate_angle(
+                angle_lat_left = calculate_lat_angle(
                     frame, centers[2], centers[0], (255, 0, 0))
                 #print("Lateral angle left: {}".format(angle_lat_left))
             if 3 in centers and 1 in centers:
-                angle_lat_right = calculate_angle(
+                angle_lat_right = calculate_lat_angle(
                     frame, centers[3], centers[1], (0, 0, 255))
+                #print("Lateral angle right: {}".format(angle_lat_right))
+            if 4 in centers and 5 in centers:
+                angle_posterior = calculate_post_angle(
+                    frame, centers[4], centers[5], (255, 0, 255))
                 #print("Lateral angle right: {}".format(angle_lat_right))
         if count == 0:
             height, width, layers = frame.shape
