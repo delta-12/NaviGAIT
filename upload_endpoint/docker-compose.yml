@@ -5,19 +5,11 @@ services:
       dockerfile: Dockerfile
       context: ./app
     ports:
+      - "80:80"
       - "5001:5001"
+      - "10444:10444"
     environment:
       - WEBAPP="https://navigait-web-app.herokuapp.com"
     volumes:
       - ./app/videos:/app/videos
-  nginx:
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/certbot/conf:/etc/letsencrypt
-    depends_on:
-      - app
+      - ./app/letsencrypt:/etc/letsencrypt

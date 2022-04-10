@@ -1,4 +1,5 @@
 FROM node:latest
+RUN apt update && apt install -y certbot cron
 RUN git clone https://github.com/delta-12/NaviGAIT.git
 RUN mv NaviGAIT/upload_endpoint/app /app
 RUN rm -Rf NaviGAIT
@@ -7,6 +8,5 @@ RUN mkdir -p videos/uploaded
 RUN mkdir videos/processed
 RUN npm install .
 RUN npm install pm2 -g
-RUN echo "pm2 start server.js" >> run_pm2
-RUN echo "tail -F /dev/null" >> run_pm2
-ENTRYPOINT [ "/bin/sh", "run_pm2" ]
+COPY start_services.sh start_services.sh
+ENTRYPOINT ["/bin/bash", "start_services.sh"]
