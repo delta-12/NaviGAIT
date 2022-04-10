@@ -5,9 +5,9 @@ const https = require("https")
 const fs = require("fs")
 var cors = require("cors")
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/navigait-uploader.ddns.net/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/navigait-uploader.ddns.net/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/navigait-uploader.ddns.net/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/navigait-uploads.ddns.net/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/navigait-uploads.ddns.net/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/navigait-uploads.ddns.net/chain.pem', 'utf8');
 
 const options = {
         key: privateKey,
