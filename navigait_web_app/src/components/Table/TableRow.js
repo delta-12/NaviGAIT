@@ -18,6 +18,20 @@ export default class TableRow extends Component {
             })
     }
 
+    onDownloadClick = e => {
+        e.preventDefault()
+        const data = new FormData()
+        data.append("fullTitle", this.props.fullTitle)
+        data.append("processed", this.props.processed)
+        axios.post("https://navigait-uploads.ddns.net:10444/api/videos/download", data)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     render() {
         const date = new Date(this.props.dateUploaded).toLocaleString().replace(":00 ", " ")
         return (

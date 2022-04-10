@@ -163,6 +163,25 @@ router.post("/delete", multer().none(), (req, res) => {
     })
 })
 
+router.post("/download", multer().none(), (req, res) => {
+  let path
+  let filePath
+  if (req.body.processed === "true") {
+    path = processedVideosDir + req.body.fullTitle
+    filePath = fs.createWriteStream(path)
+  }
+  else {
+    path = uploadedVideosDir + req.body.fullTitle
+    filePath = fs.createWriteStream(path)
+  }
+  res.pipe(filePath)
+    filePath.on("finish", () => {
+      filePath.close()
+      console.log("Download Completed")
+    })
+
+})
+
 client.connect('ws://navigait-uploads.ddns.net:10801/')
 
 module.exports = router
