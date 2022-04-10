@@ -18,7 +18,10 @@ services:
       - "5001:5001"
       - "10444:10444"
     environment:
-      - WEBAPP="https://navigait-web-app.herokuapp.com"
+      # - WEBAPP="https://navigait-web-app.herokuapp.com"
+      # - WEBSOC="ws://navigait-uploads.ddns.net:10801/"
+      - WEBAPP="http://localhost:5000"
+      - WEBSOC="ws://video_processing:10801/"
     volumes:
       - ./app/videos/processed:/app/videos/processed
       - ./app/videos/uploaded:/app/videos/uploaded

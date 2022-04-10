@@ -30,3 +30,4 @@ __pycache__*
 upload_endpoint/app/videos/processed/*
 upload_endpoint/app/videos/uploaded/*
 upload_endpoint/nginx/*
+letsencrypt*

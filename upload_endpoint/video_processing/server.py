@@ -80,4 +80,6 @@ async def main():
 
 
 if __name__ == "__main__":
+    print("Server started!")
     asyncio.run(main())
+    print("Server stopped!")

@@ -6,4 +6,4 @@ RUN rm -Rf NaviGAIT
 WORKDIR /video_processing
 RUN pip3 install -r requirements.txt
 RUN chmod +x server.py
-ENTRYPOINT [ "python3", "server.py" ]
+ENTRYPOINT [ "/usr/bin/env", "python3", "/video_processing/server.py" ]

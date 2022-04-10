@@ -2,6 +2,8 @@ const express = require("express")
 const router = express.Router()
 const multer = require("multer")
 const fs = require("fs")
+const path = require("path")
+const mime = require("mime")
 const axios = require("axios")
 const WebSocketClient = require("websocket").client
 
@@ -10,6 +12,7 @@ const validateVideoUploads = require("../../validation/videos")
 const client = new WebSocketClient()
 
 const webApp = process.env.WEBAPP
+const webSoc = process.env.WEBSOC
 
 const uploadedVideosDir = "videos/uploaded/"
 const processedVideosDir = "videos/processed/"
@@ -25,7 +28,7 @@ client.on("connect", connection => {
 
   connection.on("close", () => {
     console.log("Socket Closed Connection")
-    client.connect('ws://localhost:10801/')
+    client.connect(webSoc)
   })
 
   connection.on("message", msg => {
@@ -164,24 +167,18 @@ router.post("/delete", multer().none(), (req, res) => {
 })
 
 router.post("/download", multer().none(), (req, res) => {
-  let path
-  let filePath
-  if (req.body.processed === "true") {
-    path = processedVideosDir + req.body.fullTitle
-    filePath = fs.createWriteStream(path)
-  }
-  else {
-    path = uploadedVideosDir + req.body.fullTitle
-    filePath = fs.createWriteStream(path)
-  }
-  res.pipe(filePath)
-    filePath.on("finish", () => {
-      filePath.close()
-      console.log("Download Completed")
-    })
+  let file = (this.body.processed === "true") ? processedVideosDir + req.body.fullTitle : uploadedVideosDir + req.body.fullTitle 
 
+  let filename = path.basename(file)
+  let mimetype = mime.lookup(file)
+
+  res.setHeader('Content-disposition', 'attachment; filename=' + filename)
+  res.setHeader('Content-type', mimetype)
+
+  let filestream = fs.createReadStream(file)
+  filestream.pipe(res)
 })
 
-client.connect('ws://navigait-uploads.ddns.net:10801/')
+client.connect(webSoc)
 
 module.exports = router
