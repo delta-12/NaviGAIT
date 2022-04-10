@@ -167,7 +167,7 @@ router.post("/delete", multer().none(), (req, res) => {
 })
 
 router.post("/download", multer().none(), (req, res) => {
-  let file = (this.body.processed === "true") ? processedVideosDir + req.body.fullTitle : uploadedVideosDir + req.body.fullTitle 
+  let file = (req.body.processed === "true") ? processedVideosDir + req.body.fullTitle : uploadedVideosDir + req.body.fullTitle 
 
   let filename = path.basename(file)
   let mimetype = mime.lookup(file)

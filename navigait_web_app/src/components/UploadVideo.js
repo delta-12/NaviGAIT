@@ -50,6 +50,7 @@ export default class UploadFile extends Component {
         data.append("description", this.state.description)
         data.append("patient", this.state.patient)
         axios.post("https://navigait-uploads.ddns.net:10444/api/videos/upload", data, {
+        // axios.post("http://localhost:5001/api/videos/upload", data, {
             onUploadProgress: ProgressEvent => {
                 this.setState({
                     loaded: (ProgressEvent.loaded / ProgressEvent.total*100)

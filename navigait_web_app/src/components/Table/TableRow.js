@@ -10,6 +10,7 @@ export default class TableRow extends Component {
         data.append("fullTitle", this.props.fullTitle)
         data.append("processed", this.props.processed)
         axios.post("https://navigait-uploads.ddns.net:10444/api/videos/delete", data)
+        // axios.post("http://localhost:5001/api/videos/delete", data)
             .then(res => {
                 console.log(res)
             })
@@ -23,9 +24,21 @@ export default class TableRow extends Component {
         const data = new FormData()
         data.append("fullTitle", this.props.fullTitle)
         data.append("processed", this.props.processed)
-        axios.post("https://navigait-uploads.ddns.net:10444/api/videos/download", data)
+        axios.post("https://navigait-uploads.ddns.net:10444/api/videos/download", data, {responseType: "blob"})
+        // axios.post("http://localhost:5001/api/videos/download", data, {responseType: "blob"})
             .then(res => {
                 console.log(res)
+                const { data, headers } = res
+                // console.log(headers["content-disposition"])
+                const blob = new Blob([data], {type: headers['content-type']})
+                const url = window.URL.createObjectURL(blob)
+                const link = document.createElement('a')
+                link.href = url
+                link.style.display = "none"
+                link.setAttribute('download', 'video.mp4'); //or any other extension
+                document.body.appendChild(link)
+                link.click()
+                link.remove()
             })
             .catch(err => {
                 console.log(err)
