@@ -5,5 +5,5 @@ RUN mv NaviGAIT/upload_endpoint/video_processing /video_processing
 RUN rm -Rf NaviGAIT
 WORKDIR /video_processing
 RUN pip3 install -r requirements.txt
-RUN chmod +x server.py
-ENTRYPOINT [ "/usr/bin/env", "python3", "/video_processing/server.py" ]
+RUN chmod +x start_server.py
+ENTRYPOINT [ "/bin/sh", "/video_processing/start_server.sh" ]
