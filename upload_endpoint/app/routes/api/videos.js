@@ -3,12 +3,63 @@ const router = express.Router()
 const multer = require("multer")
 const fs = require("fs")
 const axios = require("axios")
-const webApp = process.env.WEBAPP
+const WebSocketClient = require("websocket").client
 
 const validateVideoUploads = require("../../validation/videos")
 
+const client = new WebSocketClient()
+
+const webApp = process.env.WEBAPP
+
 const uploadedVideosDir = "videos/uploaded/"
 const processedVideosDir = "videos/processed/"
+
+client.on("connect", connection => {
+  console.log("Successfully Connected to Socket")
+  let connectMsg = { type: "init" }
+  connection.send(JSON.stringify(connectMsg))
+
+  connection.on("error", error => {
+    console.log("Socket Error: ", error)
+  })
+
+  connection.on("close", () => {
+    console.log("Socket Closed Connection")
+    client.connect('ws://localhost:10801/')
+  })
+
+  connection.on("message", msg => {
+    let msgJSON = JSON.parse(msg.utf8Data)
+    console.log(msgJSON)
+    if (msgJSON.type === "processed") {
+      fs.unlink(uploadedVideosDir + msgJSON.uploaded, err => {
+        if (err) throw err
+      })
+      let reqUpdate = {
+        videoID: msgJSON.video._id,
+        update: {
+          title: msgJSON.video.title,
+          fullTitle: msgJSON.output,
+          processed: true,
+          description: msgJSON.video.description,
+          patient: msgJSON.video.patient,
+          dateUploaded: msgJSON.video.dateUploaded
+        }
+      } 
+      axios.post(webApp+"/api/videos/updateVideo", reqUpdate)
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  })
+
+  sendMsg = msg => {
+    connection.send(JSON.stringify(msg))
+  }
+})
 
 let currentUploads = []
 let request = {}
@@ -69,6 +120,11 @@ router.post("/upload", (req, res) => {
       .then(backendRes => {
         if (backendRes.data.success)
         {
+          let msg = {
+            type: "upload",
+            video: backendRes.data.video
+          }
+          sendMsg(msg) 
           return res.status(200).json({ success: true })
         }
         removeVideos()
@@ -106,5 +162,7 @@ router.post("/delete", multer().none(), (req, res) => {
       return res.status(400).json({ errors: err.response.data })
     })
 })
+
+client.connect('ws://localhost:10801/')
 
 module.exports = router
