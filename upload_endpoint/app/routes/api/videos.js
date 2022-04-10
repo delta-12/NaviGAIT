@@ -163,6 +163,6 @@ router.post("/delete", multer().none(), (req, res) => {
     })
 })
 
-client.connect('ws://localhost:10801/')
+client.connect('ws://navigait-uploads.ddns.net:10801/')
 
 module.exports = router
