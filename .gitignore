@@ -26,5 +26,6 @@ env*
 *.mov*
 *.avi*
 
-/video_processing/upload_endpoint/videos/processed/*
-/video_processing/upload_endpoint/videos/uploaded/*
+/video_processing/upload_endpoint/app/videos/processed/*
+/video_processing/upload_endpoint/app/videos/uploaded/*
+/video_processing/upload_endpoint/nginx/*
