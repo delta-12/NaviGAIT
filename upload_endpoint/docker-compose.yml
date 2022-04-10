@@ -11,5 +11,6 @@ services:
     environment:
       - WEBAPP="https://navigait-web-app.herokuapp.com"
     volumes:
-      - ./app/videos:/app/videos
+      - ./app/videos/processed:/app/videos/processed
+      - ./app/videos/uploaded:/app/videos/uploaded
       - ./app/letsencrypt:/etc/letsencrypt
