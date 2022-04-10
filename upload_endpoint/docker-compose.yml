@@ -7,8 +7,8 @@ services:
     ports:
       - "10801:10801"
     volumes:
-      - ./app/videos/processed:/video_processing/videos/processed
-      - ./app/videos/uploaded:/video_processing/videos/uploaded
+      - ../app/videos/processed:/video_processing/videos/processed
+      - ../app/videos/uploaded:/video_processing/videos/uploaded
   app:
     build:
       dockerfile: Dockerfile
