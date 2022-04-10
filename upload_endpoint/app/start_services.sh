@@ -7,4 +7,3 @@ crontab certbot.renewal
 service cron start
 pm2 start server.js
 tail -F /dev/null
-tail -F /var/log/nginx/error.log > /dev/null
