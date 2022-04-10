@@ -9,7 +9,7 @@ export default class TableRow extends Component {
         data.append("videoID", this.props.id)
         data.append("fullTitle", this.props.fullTitle)
         data.append("processed", this.props.processed)
-        axios.post("https://navigait-uploader.ddns.net:10444/api/videos/delete", data)
+        axios.post("https://navigait-uploads.ddns.net:10444/api/videos/delete", data)
             .then(res => {
                 console.log(res)
             })
