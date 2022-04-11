@@ -31,3 +31,7 @@ upload_endpoint/app/videos/processed/*
 upload_endpoint/app/videos/uploaded/*
 upload_endpoint/nginx/*
 letsencrypt*
+
+/scripts
+run-navigait.sh*
+push-code.sh*
