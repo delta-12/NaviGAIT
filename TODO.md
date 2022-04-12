@@ -8,3 +8,5 @@
 - [ ] add edit functionality for videos
 - [ ] fix issues with deletes, delete files in both dirs if currently being processed
 - [ ] add correct file name to videos downloaded
+- [ ] video info after upload, e.g. resolution and frame rate
+- [ ] compile opencv with support for h264

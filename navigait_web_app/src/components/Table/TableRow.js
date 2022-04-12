@@ -1,4 +1,5 @@
 import { Component } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
 
 export default class TableRow extends Component {
@@ -56,7 +57,7 @@ export default class TableRow extends Component {
                 }
                 <td>{this.props.patient}</td>
                 <td>{this.props.description}</td>
-                {/* <td><button className="btn" style={{border: "none", color: "#2780e3"}}>Edit</button></td> */}
+                <td><Link to={"/analyze?processed="+this.props.processed+"&fullTitle="+this.props.fullTitle} style={{ textDecoration: "none" }}><button className="btn" style={{border: "none", color: "#2780e3"}}>Analyze</button></Link></td>
                 <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.onDownloadClick}>Download</button></td>
                 <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.onDeleteClick}>Delete</button></td>
             </tr>
