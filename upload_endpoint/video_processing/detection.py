@@ -74,7 +74,7 @@ def detection(in_path, out_path, video_name, code_type):
         arucoParams = cv2.aruco.DetectorParameters_create()
         count = 0
         ids_sum = 0
-        output_video = out_path + os.path.splitext(video_name)[0] + ".mp4"
+        output_video = out_path + os.path.splitext(video_name)[0] + "-tmp.mp4"
 
         video_capture = cv2.VideoCapture(in_path + video_name)
         while True:
@@ -149,6 +149,10 @@ def detection(in_path, out_path, video_name, code_type):
                     video.release()
                 break
         video_capture.release()
+        # quick and dirty fix to convert to h264 encoding
+        os.system("ffmpeg -y -i " + output_video + " -vcodec h264 " +
+                  out_path + os.path.splitext(video_name)[0] + ".mp4")
+        os.system("rm " + output_video)
         return os.path.splitext(video_name)[0] + ".mp4"
 
     return video_name
