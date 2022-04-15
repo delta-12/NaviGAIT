@@ -71,7 +71,6 @@ export default class Analyze extends Component {
     const height = window.innerHeight
     const pdf = new jsPDF("l", "px", [height, width])
     const frames = this.state.frames
-    console.log(frames)
 
     this.setState({
       showPDF: true
@@ -79,7 +78,6 @@ export default class Analyze extends Component {
 
     for (let i = 0; i < frames.length; i++) {
       const input = await document.querySelector("#"+frames[i].id)
-      console.log(input)
       html2canvas(input, {width: width, height: height})
         .then((canvas) => {
           const imgData = canvas.toDataURL("image/png")
@@ -126,7 +124,6 @@ export default class Analyze extends Component {
 
   render () {
     const {fullTitle, processed, showPDF, savePDF} = this.state
-    console.log(this.state)
     return (
       <div>
         <Header activeItem="Analyze" />
