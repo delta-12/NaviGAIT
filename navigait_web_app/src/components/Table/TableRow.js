@@ -47,7 +47,7 @@ export default class TableRow extends Component {
     }
 
     render() {
-        const date = new Date(this.props.dateUploaded).toLocaleString().replace(":00 ", " ")
+        const date = new Date(this.props.dateUploaded).toLocaleDateString().replace(":00 ", " ")
         return (
             <tr className="table-default">
                 <th scope="row">{(date === "Invalid Date") ? "" : date}</th>
@@ -55,8 +55,8 @@ export default class TableRow extends Component {
                 {
                 (this.props.processed) ? <td><p className="text-success">Processed</p></td> : <td><p className="text-danger">Processing...</p></td>
                 }
-                <td>{this.props.patient}</td>
-                <td>{this.props.description}</td>
+                {/* <td>{this.props.patient}</td> */}
+                {/* <td>{this.props.description}</td> */}
                 <td><Link to={"/analyze?processed="+this.props.processed+"&fullTitle="+this.props.fullTitle} style={{ textDecoration: "none" }}><button className="btn" style={{border: "none", color: "#2780e3"}}>Analyze</button></Link></td>
                 <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.onDownloadClick}>Download</button></td>
                 <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.onDeleteClick}>Delete</button></td>

@@ -17,8 +17,8 @@ export default class Table extends Component {
                 <th scope="col">Date</th>
                 <th scope="col">Title</th>
                 <th scope="col">Status</th>
-                <th scope="col">Patient</th>
-                <th scope="col">Description</th>
+                {/* <th scope="col">Patient</th> */}
+                {/* <th scope="col">Description</th> */}
                 <th></th>
                 <th></th>
                 <th></th>
