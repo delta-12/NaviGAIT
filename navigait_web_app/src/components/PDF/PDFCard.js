@@ -4,7 +4,7 @@ export default class PDFTemplate extends Component {
 
     render() {
         return (
-            <div id={this.props.frame.title}>
+            <div id={this.props.frame.id}>
                 <h3 className="text-secondary">{this.props.frame.title}</h3>
                 <hr style={{ color: "black" }}></hr>
                 <div className="row">
