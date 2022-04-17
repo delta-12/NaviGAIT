@@ -45,8 +45,12 @@ def calculate_lat_angle(image, knee, ankle, color):
     min_x = min(knee[0], ankle[0])
     max_y = max(knee[1], ankle[1])
     min_y = min(knee[1], ankle[1])
-    angle = math.atan(
-        float(max_x - min_x) / float(max_y - min_y)) * (180 / math.pi)
+    angle = 0
+    try:
+        angle = math.atan(float(max_x - min_x) /
+                          float(max_y - min_y)) * (180 / math.pi)
+    except ZeroDivisionError:
+        return angle
     cv2.putText(image, str(int(angle)) + " deg",
                 (knee[0] + 15, ankle[1]), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
     return angle
@@ -60,8 +64,12 @@ def calculate_post_angle(image, left, right, color):
     cv2.line(image, (left[0], max_y), (right[0], max_y),
              color, 2)  # horizontal line
     cv2.line(image, left, right, color, 2)  # hip to hip
-    angle = math.atan(
-        float(max_y - min_y) / float(max_x - min_x)) * (180 / math.pi)
+    angle = 0
+    try:
+        angle = math.atan(
+            float(max_y - min_y) / float(max_x - min_x)) * (180 / math.pi)
+    except ZeroDivisionError:
+        return angle
     cv2.putText(image, str(int(angle)) + " deg",
                 (right[0] + 15, max_y), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
     return angle
