@@ -15,7 +15,7 @@ export default class Analyze extends Component {
     processed: null,
     fullTitle: null,
     id: 0,
-    title: "Right Foot Strike",
+    title: "",
     description: "",
     frames: [],
     savePDF: false,
@@ -142,12 +142,13 @@ export default class Analyze extends Component {
                 <div className="row">
                   <div className="col-md-8">
                     <div className="form-group mt-2">
-                      <select className="form-select" value={this.state.title} onChange={this.onChange} id="title">
+                      <input list="angles" className="form-control" value={this.state.title} onChange={this.onChange} id="title" placeholder="Type or select measurement..." />
+                      <datalist id="angles">
                         <option value="Right Foot Strike">Right Foot Strike</option>
                         <option value="Left Foot Strike">Left Foot Strike</option>
                         <option value="Right Hip Drop">Right Hip Drop</option>
                         <option value="Left Hip Drop">Left Hip Drop</option>
-                      </select>
+                      </datalist>
                     </div>
                   </div>
                   {
