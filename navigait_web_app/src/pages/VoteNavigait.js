@@ -14,7 +14,7 @@ export default class Dashboard extends Component {
               <div>
                 <h1 style={{ fontSize: "70px" }}>Text "AOM-5" to </h1>
                 <br></br>
-                <h1 style={{ fontSize: "45px" }}>484-280-2433</h1>
+                <h1 style={{ fontSize: "45px" }}>999-999-9999</h1>
               </div>
             </main>
         </div>
