@@ -1,16 +1,50 @@
-import { Text, View, Button, StyleSheet, StatusBar, TextInput, SafeAreaView, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { Component } from "react"
+import { View } from "react-native"
+import axios from "axios"
 import {globalStyles} from "../styles/global"
 import {Table} from "../components/Table/Table"
-import React from 'react';
 
-export function Library() {
-  return (
-    <View style={globalStyles.container}>
-      <View style={globalStyles.table}>
+export class Library extends Component {
 
-        <Table/>
-              
+  state = {
+    videos: null,
+    errors: null
+  }
+
+  componentDidMount() {
+    this.getVideos()
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.intervalID)
+  }
+
+  getVideos() {
+    axios
+      .get("http://localhost:3000/api/videos/infoAll")
+      .then(res => {
+        this.setState({
+          videos: res.data.videos
+        })
+      })
+      .catch(err =>
+        this.setState({
+          errors: err.response.data.error
+        })
+      )
+    this.intervalID = setTimeout(this.getVideos.bind(this), 5000)
+  }
+
+  render() {
+    return (
+      <View style={globalStyles.container}>
+        <View style={globalStyles.table}>
+  
+          <Table videos={this.state.videos} />
+                
+        </View>
       </View>
-    </View>
-  );
+    )
+  }
+
 }

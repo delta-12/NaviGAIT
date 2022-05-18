@@ -1,22 +1,27 @@
-import { DataTable } from 'react-native-paper';
-import { Button, View, Text } from 'react-native';
-import React from 'react';
-import {TableRow} from './TableRow'
+import React from "react"
+import { Text } from "react-native"
+import { DataTable } from "react-native-paper"
+import {TableRow} from "./TableRow"
 
-export function Table(){
+export const Table = props => {
+  if (props.videos === null || props.videos.length === 0)
+  {
+    return (
+      <Text>No videos uploaded.</Text>
+    ) 
+  }
   return(
     <DataTable >
-          <DataTable.Header>
-            <DataTable.Title>Name</DataTable.Title>
-            <DataTable.Title>Date</DataTable.Title>
-            <DataTable.Title></DataTable.Title>
-            <DataTable.Title></DataTable.Title>
-          </DataTable.Header>
+      <DataTable.Header>
+        <DataTable.Title>Name</DataTable.Title>
+        <DataTable.Title>Date</DataTable.Title>
+        <DataTable.Title>Processed</DataTable.Title>
+        <DataTable.Title></DataTable.Title>
+        <DataTable.Title></DataTable.Title>
+      </DataTable.Header>
 
-          <TableRow/>
-          <TableRow/>
-          <TableRow/>
-          <TableRow/>
+      {props.videos.map((v) => <TableRow key={v._id} id={v._id} title={v.title} fullTitle={v.fullTitle} dateUploaded={(v.dateUploaded !== null ) ? v.dateUploaded : ""} description={v.description} processed={v.processed} patient={v.patient} />)}
+
     </DataTable>
-  );
+  )
 }
