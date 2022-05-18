@@ -21,7 +21,7 @@ export class Library extends Component {
 
   getVideos() {
     axios
-      .get("http://localhost:3000/api/videos/infoAll")
+      .get("http://localhost:5000/api/videos/infoAll")
       .then(res => {
         this.setState({
           videos: res.data.videos
