@@ -1,6 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const path = require("path")
+const cors = require("cors")
 const bodyParser = require("body-parser")
 const videos = require("./routes/api/videos")
 const db = process.env.MONGOURI || require("./config/keys").mongoURI
@@ -21,6 +22,7 @@ server.use(
   })
 )
 
+server.use(cors())
 server.use(bodyParser.json())
 
 server.use("/api/videos", videos)
