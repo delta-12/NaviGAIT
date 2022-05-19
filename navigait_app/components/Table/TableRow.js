@@ -12,7 +12,7 @@ export const TableRow = props => {
 
     return(
         <DataTable.Row>
-            <DataTable.Cell>FirstName LastName</DataTable.Cell>
+            <DataTable.Cell>{props.patient}</DataTable.Cell>
             <DataTable.Cell>{date}</DataTable.Cell>
             <DataTable.Cell>{(props.processed) ? "Processed" : "Processing..."}</DataTable.Cell>
             <DataTable.Cell>

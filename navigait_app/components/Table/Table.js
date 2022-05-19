@@ -14,8 +14,8 @@ export const Table = props => {
     <DataTable >
       <DataTable.Header>
         <DataTable.Title>Name</DataTable.Title>
-        <DataTable.Title>Date</DataTable.Title>
-        <DataTable.Title>Processed</DataTable.Title>
+        <DataTable.Title>Date Uploaded</DataTable.Title>
+        <DataTable.Title>Status</DataTable.Title>
         <DataTable.Title></DataTable.Title>
         <DataTable.Title></DataTable.Title>
       </DataTable.Header>

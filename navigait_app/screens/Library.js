@@ -1,8 +1,8 @@
 import { Component } from "react"
 import { View } from "react-native"
 import axios from "axios"
-import {globalStyles} from "../styles/global"
-import {Table} from "../components/Table/Table"
+import { globalStyles } from "../styles/global"
+import { Table } from "../components/Table/Table"
 
 export class Library extends Component {
 
