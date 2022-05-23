@@ -1,9 +1,9 @@
 FROM node:latest
 RUN apt update && apt install -y certbot cron
 RUN git clone https://github.com/delta-12/NaviGAIT.git
-RUN mv NaviGAIT/services/app /app
+RUN mv NaviGAIT/services/video_endpoints /video_endpoints
 RUN rm -Rf NaviGAIT
-WORKDIR /app
+WORKDIR /video_endpoints
 RUN mkdir -p videos/uploaded
 RUN mkdir videos/processed
 RUN npm install .

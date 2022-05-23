@@ -1,7 +1,7 @@
 {
-  "name": "upload_endpoint",
+  "name": "video_endpoints",
   "version": "1.0.0",
-  "description": "Handle video upload",
+  "description": "Handle video upload, download, and streaming",
   "main": "server.js",
   "engines": {
     "node": "17.3.0",
