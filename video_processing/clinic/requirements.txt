@@ -1,4 +1,0 @@
-argparse
-opencv-contrib-python
-flask
-werkzeug

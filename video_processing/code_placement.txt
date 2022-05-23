@@ -1,6 +1,0 @@
-0 - left ankle
-1 - right ankle
-2 - left knee
-3 - right knee
-4 - left hip
-5 - right hip
