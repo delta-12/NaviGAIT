@@ -7,12 +7,12 @@ services:
     ports:
       - "10801:10801"
     volumes:
-      - ./app/videos/processed:/video_processing/videos/processed
-      - ./app/videos/uploaded:/video_processing/videos/uploaded
-  app:
+      - ./video_endpoints/videos/processed:/video_processing/videos/processed
+      - ./video_endpoints/videos/uploaded:/video_processing/videos/uploaded
+  video_endpoints:
     build:
       dockerfile: Dockerfile
-      context: ./app
+      context: ./video_endpoints
     ports:
       - "80:80"
       - "5001:5001"
@@ -21,8 +21,8 @@ services:
       - WEBAPP=https://navigait-web-app.herokuapp.com
       - WEBSOC=ws://video_processing:10801/
     volumes:
-      - ./app/videos/processed:/app/videos/processed
-      - ./app/videos/uploaded:/app/videos/uploaded
-      - ./app/letsencrypt:/etc/letsencrypt
+      - ./video_endpoints/videos/processed:/video_endpoints/videos/processed
+      - ./video_endpoints/videos/uploaded:/video_endpoints/videos/uploaded
+      - ./video_endpoints/letsencrypt:/etc/letsencrypt
     depends_on:
       - video_processing
