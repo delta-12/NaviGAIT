@@ -1,25 +1,26 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native"
 
 export const globalStyles = StyleSheet.create({
+
   container: {
-    flex: 1,
-    //backgroundColor: ""
+    flex: 1
   },
+
   table: {
     flex: 1, 
-    justifyContent: 'flex-start', 
-    alignItems: 'center'
+    justifyContent: "flex-start", 
+    alignItems: "center"
   },
 
   uploadBackground: {
     flex: 1,
-    alignItems: "center",
+    alignItems: "center"
   },
 
   uploadCenterBox: {
     height: "50%",
     width: "85%",
-    backgroundColor: 'lightgrey',
+    backgroundColor: "lightgrey",
     marginVertical: 40
   },
 
@@ -42,4 +43,4 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center"
   }
 
-});
+})
