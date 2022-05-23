@@ -1,0 +1,3 @@
+/home/delta12/NaviGAIT/video_processing/detect_cpp/CMakeFiles/rebuild_cache.dir
+/home/delta12/NaviGAIT/video_processing/detect_cpp/CMakeFiles/edit_cache.dir
+/home/delta12/NaviGAIT/video_processing/detect_cpp/CMakeFiles/detect.dir
