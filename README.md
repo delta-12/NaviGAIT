@@ -1,3 +1,3 @@
 # NaviGAIT
 
-Navigating the Future of Preventive Care for Runners
+Navigating the Future of Preventive Care for Claire
