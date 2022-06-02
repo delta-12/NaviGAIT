@@ -19,6 +19,9 @@ export const TableRow = props => {
                 <Button title="Analyze" onPress={() => navigation.navigate('Analyze')} />
             </DataTable.Cell>
             <DataTable.Cell>
+                <Button title='Edit' />
+            </DataTable.Cell>
+            <DataTable.Cell>
                 <Button title='Delete' />
             </DataTable.Cell>
         </DataTable.Row>
