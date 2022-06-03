@@ -15,7 +15,8 @@ export const Table = props => {
       <DataTable.Header>
         <DataTable.Title>Name</DataTable.Title>
         <DataTable.Title>Date Uploaded</DataTable.Title>
-        <DataTable.Title>Status</DataTable.Title>
+        <DataTable.Title>Video Status</DataTable.Title>
+        <DataTable.Title></DataTable.Title>
         <DataTable.Title></DataTable.Title>
         <DataTable.Title></DataTable.Title>
       </DataTable.Header>
