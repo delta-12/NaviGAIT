@@ -4,6 +4,7 @@ import React from "react"
 import {Dashboard} from "./DashboardStack"
 import {Upload} from "../screens/Upload"
 import { AddPatients } from '../screens/AddPatients';
+import { Drawers } from './Drawers';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +26,7 @@ export function Tabs() {
     >
       <Tab.Screen
         name="Dashboard"
-        component={Dashboard}
+        component={Drawers}
         options={{
           tabBarLabel: 'Dashboard',
           tabBarIcon: ({ color, size }) => (
