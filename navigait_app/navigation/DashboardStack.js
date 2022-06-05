@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Library} from "../screens/Library"
 import {Analyze} from "../screens/Analyze"
+import { Captures } from '../screens/Captures';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,8 +14,12 @@ export function Dashboard() {
       component={Library}
       />
       <Stack.Screen 
-      name='Analyze' 
+      name="Analyze"
       component={Analyze}
+      />
+      <Stack.Screen 
+      name="Captures"
+      component={Captures}
       />
     </Stack.Navigator>
   );

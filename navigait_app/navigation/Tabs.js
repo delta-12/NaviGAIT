@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from "react"
-import {Dashboard} from "./Dashboard"
+import {Dashboard} from "./DashboardStack"
 import {Upload} from "../screens/Upload"
 import { AddPatients } from '../screens/AddPatients';
 
