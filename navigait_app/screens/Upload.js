@@ -33,7 +33,7 @@ export function Upload() {
         <UploadTextInput placeholder="Enter Patient Name" text={patient} setText={setPatient} />
         <UploadTextInput placeholder="Enter Description" text={description} setText={setDescription} /> 
         <View style={globalStyles.uploadButton}>
-          <UploadButtonTemplate width="100%" height="100%" color="mediumseagreen" icon="upload" text="Upload" onPress={upload} />
+          <UploadButtonTemplate width="100%" height="100%" color="mediumseagreen" icon="upload" text="Upload" />
         </View>
       </View>
     </View>
