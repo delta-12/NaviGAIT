@@ -6,7 +6,7 @@ import { Captures } from '../screens/Captures';
 
 const Stack = createNativeStackNavigator();
 
-export function Dashboard() {
+export function DashboardStack() {
   return (
     <Stack.Navigator initialRouteName="Library">
       <Stack.Screen 
