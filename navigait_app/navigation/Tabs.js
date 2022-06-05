@@ -3,6 +3,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from "react"
 import {Dashboard} from "./Dashboard"
 import {Upload} from "../screens/Upload"
+import { AddPatients } from '../screens/AddPatients';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +43,16 @@ export function Tabs() {
           ),
         }}
       />
-      
+      <Tab.Screen
+        name="AddPatients"
+        component={ AddPatients }
+        options={{
+          tabBarLabel: "Add Patients",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account-multiple-plus" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }

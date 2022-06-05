@@ -34,7 +34,7 @@ export const globalStyles = StyleSheet.create({
   inputText: {
     flex: 1,
     justifyContent: "center",
-    marginHorizontal: 20
+    //marginHorizontal: 20
   },
 
   uploadButton: {
