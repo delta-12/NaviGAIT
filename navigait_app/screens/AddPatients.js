@@ -4,7 +4,7 @@ import { Text, View } from "react-native"
 import { UploadTextInput } from "../components/Upload/UploadTextInput"
 import { UploadButtonTemplate } from "../components/Upload/UploadButtonTemplate"
 import { globalStyles } from "../styles/global"
-import { AddPatient } from "../components/AddPatients/AddPatient"
+import { AddPatient } from "../components/Patients/AddPatient"
 
 export function AddPatients () {
 
