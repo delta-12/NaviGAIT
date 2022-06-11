@@ -4,6 +4,7 @@ const path = require("path")
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const videos = require("./routes/api/videos")
+const patients = require("./routes/api/patients")
 const db = process.env.MONGOURI || require("./config/keys").mongoURI
 
 const server = express()
@@ -26,6 +27,7 @@ server.use(cors())
 server.use(bodyParser.json())
 
 server.use("/api/videos", videos)
+server.use("/api/patients", patients)
 
 server.use(express.static('../build'))
 server.get('*', (req, res) => {
