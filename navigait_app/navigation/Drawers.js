@@ -22,8 +22,17 @@ export class Drawers extends Component {
     this.setState({ errors: errors })
   }
 
-  componentDidMount() {
+  getPatientNames() {
     GetAllPatients(this.setData, this.setErrors)
+    this.intervalID = setTimeout(this.getPatientNames.bind(this), 5000)
+  }
+
+  componentDidMount() {
+    this.getPatientNames()
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.intervalID)
   }
 
   render() {
